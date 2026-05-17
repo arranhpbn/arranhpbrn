@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arran Hepburn</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="512x512" href="favicon-512.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&f[]=satoshi@400,500&f[]=zodiak@400,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FAF7F2;
+  --bg2: #F3EDE3;
+  --gold: #B8935A;
+  --gold-light: #D4AF7A;
+  --ink: #0D0C0A;
+  --ink2: #4A4438;
+  --ink3: #9A8E7E;
+  --border: #E8E0D0;
+  --ease: cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+body { font-family: 'Satoshi', sans-serif; font-weight: 400; }
+
+.viewport { position: relative; width: 100%; height: 100%; overflow: hidden; }
+
+.page {
+  position: absolute; inset: 0;
+  overflow-y: auto; overflow-x: hidden;
+  padding: 0 clamp(20px, 5vw, 80px);
+  opacity: 0; transform: translateX(60px); pointer-events: none;
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+}
+.page.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 28px 0; font-size: 13px; letter-spacing: 0.02em;
+}
+.topbar-logo span { color: var(--gold); font-weight: 700; }
+.topbar-status { color: var(--ink3); display: flex; align-items: center; gap: 8px; }
+.pulse-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #4CAF50;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.hint { font-size: 11px; color: var(--ink3); margin-top: 48px; letter-spacing: 0.06em; }
+
+.hero { margin-top: 12px; }
+.hero-name {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(56px, 12vw, 108px);
+  font-weight: 700; line-height: 0.88;
+  cursor: pointer; display: block;
+  transition: color 0.3s ease;
+  user-select: none; letter-spacing: -0.02em;
+  width: fit-content;
+}
+.hero-name.arran { color: var(--ink); }
+.hero-name.arran:hover { color: var(--gold); }
+.hero-name.hepburn { color: var(--gold); }
+.hero-name.hepburn:hover { color: var(--ink); }
+
+.bio {
+  font-family: 'Zodiak', serif; font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.65; color: var(--ink2); max-width: 520px;
+  margin-top: 32px;
+}
+.bio strong { color: var(--ink); font-weight: 400; }
+
+.divider { width: 100%; height: 1px; background: var(--border); margin: 40px 0; }
+
+.section-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--ink3); margin-bottom: 16px; font-weight: 500;
+}
+
+.project-row {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 0; text-decoration: none; color: inherit;
+  position: relative; overflow: hidden; border-radius: 6px;
+  transition: padding 0.3s ease;
+}
+.project-row::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold); opacity: 0;
+  transform: translateX(-101%);
+  transition: transform 0.45s var(--ease), opacity 0.45s ease;
+  border-radius: 6px;
+}
+.project-row:hover { padding: 20px 16px; }
+.project-row:hover::before { transform: translateX(0); opacity: 0.06; }
+.project-num {
+  font-size: 13px; color: var(--ink3); font-weight: 500; min-width: 28px;
+  transition: color 0.3s ease; position: relative;
+}
+.project-title {
+  font-family: 'Cabinet Grotesk', sans-serif; font-weight: 800;
+  font-size: clamp(22px, 4vw, 32px); letter-spacing: -0.01em;
+  transition: color 0.3s ease; position: relative;
+}
+.project-tag {
+  font-size: 11px; color: var(--ink3); border: 1px solid var(--border);
+  padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+  transition: border-color 0.3s ease; position: relative;
+}
+.project-arrow {
+  margin-left: auto; font-size: 18px; color: var(--ink3);
+  transition: color 0.3s ease, transform 0.3s ease; position: relative;
+}
+.project-row:hover .project-num { color: var(--gold); }
+.project-row:hover .project-title { color: var(--ink); }
+.project-row:hover .project-tag { border-color: var(--gold); }
+.project-row:hover .project-arrow { color: var(--gold); transform: translate(3px, -3px); }
+.proj-icon { width: 18px; height: 18px; fill: currentColor; color: var(--ink3); transition: color 0.2s; flex-shrink: 0; }
+.project-row:hover .proj-icon { color: var(--gold); }
+
+.social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.social-card {
+  border: 1px solid var(--border); border-radius: 10px; padding: 20px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.social-card:hover {
+  border-color: var(--gold-light); transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.social-platform { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink3); }
+.social-handle {
+  font-family: 'Cabinet Grotesk', sans-serif; font-weight: 700;
+  font-size: clamp(14px, 2vw, 16px); transition: color 0.3s ease;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.social-card:hover .social-handle { color: var(--gold); }
+.social-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.social-top .social-icon { font-size: 15px; color: var(--ink3); transition: color 0.3s var(--ease); }
+.social-card:hover .social-icon { color: var(--gold); }
+.social-handle .arr { font-size: 12px; color: var(--ink3); }
+
+.footer {
+  display: flex; justify-content: space-between; padding: 40px 0 28px;
+  font-size: 11px; color: var(--border); margin-top: 40px;
+}
+
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; color: var(--ink3); cursor: pointer;
+  padding: 28px 12px 28px 0; min-height: 44px; min-width: 44px;
+  transition: color 0.2s; background: none; border: none;
+  font-family: 'Satoshi', sans-serif;
+}
+.back-btn:hover { color: var(--ink); }
+
+.detail-eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--ink3); margin-bottom: 8px; }
+.detail-name {
+  font-family: 'Clash Display', sans-serif; font-weight: 700;
+  font-size: clamp(48px, 10vw, 92px); line-height: 0.92; letter-spacing: -0.02em;
+}
+.phonetic { font-family: 'Zodiak', serif; font-style: italic; color: var(--ink3); font-size: 15px; margin-top: 12px; }
+.gold-line { width: 40px; height: 2px; background: var(--gold); margin: 28px 0; }
+
+.fact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 36px; }
+.fact-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+.fact-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink3); margin-bottom: 6px; font-weight: 500; }
+.fact-value { font-family: 'Zodiak', serif; font-size: 14px; line-height: 1.55; color: var(--ink2); }
+
+.story {
+  font-family: 'Zodiak', serif; font-size: 15px; line-height: 1.7;
+  color: var(--ink2); border-left: 2px solid var(--gold); padding-left: 20px;
+  margin-bottom: 36px; max-width: 560px;
+}
+
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; margin-bottom: 48px; }
+.pill { font-size: 11px; padding: 5px 14px; border-radius: 20px; border: 1px solid var(--border); color: var(--ink3); }
+
+@media (max-width: 640px) {
+  .social-grid { grid-template-columns: 1fr; }
+  .fact-grid { grid-template-columns: 1fr; }
+  .project-row { flex-wrap: wrap; gap: 8px; }
+  .project-arrow { margin-left: auto; }
+}
+</style>
+</head>
+<body>
+<div class="viewport">
+
+  <div class="page active" id="home" style="pointer-events:auto">
+    <div class="topbar">
+      <div class="topbar-logo">hp<span>brn</span>.ac</div>
+      <div class="topbar-status"><span class="pulse-dot"></span> building · horley, uk</div>
+    </div>
+    <div class="hint">↓ click either name</div>
+    <div class="hero">
+      <div class="hero-name arran" onclick="goTo('pa')" onmouseenter="scramble(this,'ARRAN')" id="hero-arran">ARRAN</div>
+      <div class="hero-name hepburn" onclick="goTo('ph')" onmouseenter="scramble(this,'HEPBURN')" id="hero-hepburn">HEPBURN</div>
+    </div>
+    <p class="bio"><strong>15 years old, based in Horley, England.</strong> I'm early in my journey but I build real things and ship them. Every project teaches me something new. Still learning, always building.</p>
+    <div class="divider"></div>
+    <div class="section-label">Projects</div>
+    <a class="project-row" href="https://synced.click" target="_blank" rel="noopener">
+      <svg class="proj-icon" style="position:relative; top:2px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="m97.5 46.9-2.2-2.1c-0.7-7.7-3.8-14.8-8.6-21.9l-0.3-0.5c-0.4-0.5-0.2-0.6-0.2-2.4 0.3-0.6 0.2-1.9-0.1-2.5-0.3-0.9-1.7-2.4-2.8-3-0.9-0.5-2.3-0.6-3.8-0.1-0.5 0-0.8-0.1-1.1-0.4-3.7-2.7-11-7.4-19.7-8.5l-3.3-0.6c-0.8-0.6-2.1-2.5-3.3-3-1.1-0.5-3.3-0.5-4.3 0.1-0.9 0.5-2.3 2.3-3 2.8-3.6 0.3-7.7 1.3-10.8 2.4-4.1 1.6-7.7 3.4-12.6 7-0.8 0.6-2.1-0.6-4.3 0-1.1 0.4-3 2.2-3.2 3.5-0.4 1.9 0.4 3.2 0.2 4.1-2.6 3.2-4.3 6.4-5.7 9.4-1.8 4.2-3 8.3-3.4 13.6l-1.1 1.1c-1.4 1.3-2.1 2.1-2 4.2 0 2.3 1 3 3.1 5.1v0.1c0.9 7.7 4.4 16.4 8.8 22.4 0.8 0.9 0 2.5 0 3.5 0.1 1.7 0.8 2.7 2.2 3.8 2.4 1.8 3.5 0.6 5.2 0.6 5.3 4 12.2 7.9 23.6 9.4 1.3 1 2.1 3.1 4.1 3.5 1.1 0.2 2.3 0.2 3.3-0.1 1.4-0.5 2.4-2 3.2-2.8l0.2-0.5c7.9-1 15.3-3.2 23.1-9.2l0.1-0.1c0.7-0.5 2.4 1 4.6 0 1.1-0.4 2.6-1.9 3-3.2 0.5-2.2-0.3-2.4 0.1-4.5 2.5-3 7.4-10.5 8.8-22.8 2.1-2.1 2.8-2.4 3.1-3.9 0.2-0.9 0.2-3.3-0.9-4.5zm-47.4 41.7c-20.1 0-38.5-15.2-38.5-38.1 0-17 12.3-30.6 22.4-35 2.6-1.1 5.5-2.3 8.4-2.9 2.6-0.5 5.1-1 8-1 18.6-0.1 38.4 14.5 38.4 38.5 0 21.5-17.2 38.5-38.7 38.5z"/><path d="m50.4 15.3c-15.5 0-35.1 12.2-35.1 34.8 0 17.7 12.9 34.5 34.6 34.5 19.5 0 34.9-15.1 34.9-34.3 0-17.7-14.4-35-34.4-35zm-0.2 64.3c-15.4 0-29.7-11.7-29.7-29.5 0-2.5 0.4-5.5 1-7.5 0.7-2.3 1.4-4.6 2.6-6.7 4.3-7.7 12.8-15 25.4-15.5 13.1-0.4 24.5 8.8 28.1 17.6 1.3 3.1 2.5 7.1 2 14.1-0.7 8.4-6.2 17-13.1 22-3.5 2.4-8.6 5.3-16.3 5.5z"/></svg>
+      <span class="project-num">01</span>
+      <span class="project-title" onmouseenter="scramble(this,'SYNCED')">SYNCED</span>
+      <span class="project-tag">game · js · supabase</span>
+      <span class="project-arrow">↗</span>
+    </a>
+    <div class="divider"></div>
+    <div class="section-label">Socials</div>
+    <div class="social-grid">
+      <a class="social-card" href="https://x.com/arranhpbrn" target="_blank" rel="noopener">
+        <div class="social-top">
+          <span class="social-platform">X / Twitter</span>
+          <i class="ti ti-brand-x social-icon"></i>
+        </div>
+        <div class="social-handle"><span>@arranhpbrn</span> <span class="arr">↗</span></div>
+      </a>
+      <a class="social-card" href="https://instagram.com/arhpbrn" target="_blank" rel="noopener">
+        <div class="social-top">
+          <span class="social-platform">Instagram</span>
+          <i class="ti ti-brand-instagram social-icon"></i>
+        </div>
+        <div class="social-handle"><span>@arhpbrn</span> <span class="arr">↗</span></div>
+      </a>
+      <a class="social-card" href="https://tiktok.com/@ahpbrn" target="_blank" rel="noopener">
+        <div class="social-top">
+          <span class="social-platform">TikTok</span>
+          <i class="ti ti-brand-tiktok social-icon"></i>
+        </div>
+        <div class="social-handle"><span>@ahpbrn</span> <span class="arr">↗</span></div>
+      </a>
+    </div>
+    <div class="footer">
+      <span>© 2026</span>
+      <span>arran hepburn</span>
+    </div>
+  </div>
+
+  <div class="page" id="pa">
+    <button class="back-btn" onclick="goTo('home')">← back</button>
+    <div class="detail-eyebrow">the name</div>
+    <div class="detail-name" style="color:var(--ink)">ARRAN</div>
+    <div class="phonetic">/ ˈærən / — two syllables, stress on first</div>
+    <div class="gold-line"></div>
+    <div class="fact-grid">
+      <div class="fact-card">
+        <div class="fact-label">Origin</div>
+        <div class="fact-value">Scottish Gaelic — from the Isle of Arran, off Scotland's west coast</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-label">Root meaning</div>
+        <div class="fact-value">From àrainn — possibly "kidney-shaped", describing the island's outline from above</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-label">Alternate theory</div>
+        <div class="fact-value">Linked to old Irish ara — used to describe high, arched land</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-label">Element</div>
+        <div class="fact-value">Associated with earth and sea — the island sits between Scotland and Ireland</div>
+      </div>
+    </div>
+    <div class="story">The Isle of Arran has been inhabited for over 6,000 years. Sometimes called "Scotland in miniature", its dramatic landscape ranges from lowland farms to highland peaks — a fitting origin for a name that carries both weight and warmth.</div>
+    <div class="section-label">Notable Arrans</div>
+    <div class="pills">
+      <span class="pill">Isle of Arran, Scotland</span>
+      <span class="pill">Arran Johnston (musician)</span>
+      <span class="pill">Arran Henderson (rugby)</span>
+    </div>
+  </div>
+
+  <div class="page" id="ph">
+    <button class="back-btn" onclick="goTo('home')">← back</button>
+    <div class="detail-eyebrow">the name</div>
+    <div class="detail-name" style="color:var(--gold)">HEPBURN</div>
+    <div class="phonetic">/ ˈhɛpbɜːrn / — two syllables, stress on first</div>
+    <div class="gold-line"></div>
+    <div class="fact-grid">
+      <div class="fact-card">
+        <div class="fact-label">Origin</div>
+        <div class="fact-value">Old English — a place-name turned surname, from Northumberland</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-label">Literal meaning</div>
+        <div class="fact-value">heope (wild rose hip) + burn (stream) = "stream by the rose hips"</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-label">Burn</div>
+        <div class="fact-value">Still used today — burn means a small stream, from Old English burna</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-label">First recorded</div>
+        <div class="fact-value">Appears in records as early as the 14th century in northern England</div>
+      </div>
+    </div>
+    <div class="story">Hepburn is a topographic surname — given to families who lived near a landmark, here a stream lined with wild rose bushes. It speaks to a time when identity was rooted in the landscape around you.</div>
+    <div class="section-label">Notable Hepburns</div>
+    <div class="pills">
+      <span class="pill">Audrey Hepburn</span>
+      <span class="pill">Katharine Hepburn</span>
+      <span class="pill">James Hepburn, Earl of Bothwell</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function goTo(id) {
+  ['home', 'pa', 'ph'].forEach(p => {
+    const el = document.getElementById(p);
+    const active = p === id;
+    el.style.transform = active ? 'translateX(0)' : (p === 'home' ? 'translateX(-100%)' : 'translateX(100%)');
+    el.style.opacity = active ? '1' : '0';
+    el.style.pointerEvents = active ? 'auto' : 'none';
+  });
+  document.getElementById(id).scrollTop = 0;
+}
+
+function scramble(el, word) {
+  if (el._scrambling) return;
+  el._scrambling = true;
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const len = word.length;
+  let resolved = 0;
+  const arr = word.split('').map(() => chars[Math.floor(Math.random() * 26)]);
+  el.textContent = arr.join('');
+  const iv = setInterval(() => {
+    for (let i = resolved; i < len; i++) arr[i] = chars[Math.floor(Math.random() * 26)];
+    arr[resolved] = word[resolved];
+    resolved++;
+    el.textContent = arr.join('');
+    if (resolved >= len) { clearInterval(iv); el._scrambling = false; }
+  }, 35);
+}
+</script>
+</body>
+</html>
