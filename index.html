@@ -73,6 +73,8 @@
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; background: var(--accent);
     color: var(--white); text-decoration: none; font: 500 14px/1 var(--sans); transition: transform .2s ease, background .2s; }
   .btn:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--accent) 88%, black); }
+  .btn.play { background: #8db4e2; color: var(--ink); padding: 11px 24px; }
+  .btn.play:hover { background: #7aa6db; }
   .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--white); animation: pulse 2s ease-in-out infinite; }
   @keyframes pulse { 50% { opacity: .35; } }
 
@@ -80,11 +82,11 @@
   .hero { padding: 64px 0 60px; color: var(--ink); }
   .hero h1 { margin: 0; }
   #name { width: min(100%, 880px); height: auto; display: block; overflow: visible; cursor: pointer; }
-  #name path { fill: none; stroke: var(--ink); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
-  #name path.x { stroke: var(--accent); stroke-width: 3.8; }
+  #name path { fill: none; stroke: var(--ink); stroke-width: 4.4; stroke-linecap: round; stroke-linejoin: round; }
+  #name path.x { stroke: var(--accent); stroke-width: 4.6; }
   #name path { transform-box: fill-box; transform-origin: center; }
   .nib { fill: var(--accent); opacity: 0; transition: opacity .3s; } .nib.on { opacity: 1; }
-  .sub { margin: 30px 0 0; max-width: 560px; font: italic 400 clamp(18px, 2.2vw, 22px)/1.5 var(--serif); }
+  .sub { margin: 30px 0 0; max-width: 720px; font: italic 400 clamp(18px, 2.2vw, 22px)/1.5 var(--serif); }
   .sub span { opacity: .55; padding: 0 .35em; }
 
   /* ── featured projects ─────────────────────────────── */
@@ -222,9 +224,9 @@
       <path class="x" d="M14.1,167.0C22.8,166.3 31.4,166.0 40.3,165.0C49.6,164.0 59.3,162.3 68.8,161.0"/>
       <path class="x" d="M321.6,154.0C332.4,153.3 343.1,152.8 353.9,152.0C364.7,151.2 375.5,150.0 386.3,149.0"/>
     </g>
-    <circle class="nib" id="nib" r="2.6" cx="0" cy="0"/>
+    <circle class="nib" id="nib" r="3.2" cx="0" cy="0"/>
   </svg></h1>
-      <p class="sub">15<span>·</span>Horley, England<span>·</span>I build real things and ship them.</p>
+      <p class="sub">15<span>·</span>Horley, England<span>·</span>I try to make cool builds and ship them.</p>
     </header>
   </div>
 
@@ -236,7 +238,7 @@
         <h2>Synced</h2>
         <p>A browser drum-beat game. Hear a beat, build it back, and find out how much actually landed.</p>
         <div class="chips"><span class="chip">vanilla js</span><span class="chip">web audio</span><span class="chip">supabase</span></div>
-        <div class="row"><a class="btn" href="https://synced.click" target="_blank" rel="noopener">Play it ↗</a><span class="soon">solo build</span></div>
+        <div class="row"><a class="btn play" href="https://synced.click" target="_blank" rel="noopener">Play it</a><span class="soon">solo build</span></div>
       </div>
       <a class="shot" href="https://synced.click" target="_blank" rel="noopener" aria-label="Open Synced"><img src="assets/projects/synced.webp" alt="Synced's start screen: a glowing card reading 'be synced'." loading="lazy" width="1200" height="750"></a>
     </article>
@@ -248,7 +250,7 @@
         <h2>Grimhold Arcade</h2>
         <p>A keep of pixel games. Torches lit, goblins restless. Four halls so far: Hexbreak, Wyrm, Cinderwing and Spirehop.</p>
         <div class="chips"><span class="chip">canvas</span><span class="chip">pixel art</span><span class="chip">4 games</span><span class="chip">no accounts</span></div>
-        <div class="row"><a class="btn" href="https://grimhold.hpbrn.ac" target="_blank" rel="noopener">Play it ↗</a><span class="soon">4 games, no accounts</span></div>
+        <div class="row"><a class="btn play" href="https://grimhold.hpbrn.ac" target="_blank" rel="noopener">Play it</a><span class="soon">4 games, no accounts</span></div>
       </div>
     </article>
 
