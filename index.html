@@ -114,20 +114,6 @@
   .head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 24px; }
   .head p { margin: 0; color: var(--muted); font-size: 15px; }
 
-  /* ── work cards ────────────────────────────────────── */
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .card { display: grid; grid-template-rows: auto 1fr; gap: 16px; padding: 12px 12px 22px; border-radius: var(--r); text-decoration: none;
-    border: 1px solid color-mix(in srgb, var(--cream) 14%, transparent); background: rgba(255,255,255,.03);
-    transition: transform .3s ease, border-color .3s ease, background .3s; }
-  .card:hover { transform: translateY(-4px); border-color: var(--accent); background: rgba(255,255,255,.05); }
-  .card .thumb { aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; background: linear-gradient(180deg, var(--peach), var(--tan)); }
-  .card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-  .card .body { padding: 0 8px; display: grid; gap: 6px; align-content: start; }
-  .card h3 { margin: 0; display: flex; justify-content: space-between; font: 700 20px/1.2 var(--sans); }
-  .card h3 span { color: var(--accent); transition: transform .3s; } .card:hover h3 span { transform: translate(2px,-2px); }
-  .card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
-  .card .tag { font: 11px/1.4 var(--mono); color: color-mix(in srgb, var(--cream) 45%, transparent); margin-top: 6px; }
-
   /* ── about ─────────────────────────────────────────── */
   .about { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: center; }
   .about img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r); box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); }
@@ -179,7 +165,6 @@
   .reveal.in { opacity: 1; transform: none; }
 
   @media (max-width: 860px) {
-    .grid { grid-template-columns: 1fr 1fr; }
     .board { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 720px) {
@@ -188,7 +173,6 @@
     .featured.flip .shot { order: 2; }
     .featured .copy { padding: 30px 26px; }
     .shot { min-height: 230px; } .shot img { inset: 18px; width: calc(100% - 36px); height: calc(100% - 36px); }
-    .grid { grid-template-columns: 1fr; }
     .board { grid-template-columns: repeat(2, 1fr); gap: 22px 16px; }
     .about { gap: 32px; } .about img { max-width: 300px; }
     main { padding-top: 140px; }
@@ -254,29 +238,12 @@
       </div>
     </article>
 
-    <section aria-labelledby="more-h">
-      <div class="head"><h2 class="label" id="more-h" style="margin:0">More work</h2><p>Real sites for real places, and tools I use myself.</p></div>
-      <div class="grid">
-        <a class="card reveal" href="https://paced-five.vercel.app" target="_blank" rel="noopener">
-          <div class="thumb"><img src="assets/projects/paced.webp" alt="paced's sign-in screen." loading="lazy" width="1200" height="750"></div>
-          <div class="body"><h3>paced <span>↗</span></h3><p>A work organisation app that keeps your homework in sync across devices.</p><div class="tag">web app · supabase</div></div>
-        </a>
-        <a class="card reveal" href="https://costadelsolhorley.co.uk" target="_blank" rel="noopener">
-          <div class="thumb"><img src="assets/projects/costa.webp" alt="Costa del Sol's homepage: a paella with the line 'The taste of southern Spain, minutes from Gatwick.'" loading="lazy" width="1200" height="750"></div>
-          <div class="body"><h3>Costa del Sol <span>↗</span></h3><p>A better website for a tapas bar in Horley.</p><div class="tag">restaurant site</div></div>
-        </a>
-        <a class="card reveal" href="https://musti-s-grill.vercel.app" target="_blank" rel="noopener">
-          <div class="thumb"><img src="assets/projects/musti.webp" alt="Musti's Grill homepage: grilled chicken and chips under 'Authentic Turkish Grill, Right on Horley High Street.'" loading="lazy" width="1200" height="750"></div>
-          <div class="body"><h3>Musti's Grill <span>↗</span></h3><p>A new site for a Turkish grill on Horley High Street.</p><div class="tag">restaurant site</div></div>
-        </a>
-      </div>
-    </section>
 
     <section class="about reveal" id="about" aria-labelledby="about-h">
       <img src="assets/arran.webp" alt="Arran from behind, standing by a still pond on a bright autumn day." loading="lazy" width="800" height="1000">
       <div class="text">
         <h2 class="label" id="about-h" style="margin:0">About</h2>
-        <p class="lead"><b>15 years old, based in Horley, England.</b> I'm early in my journey but I build real things and ship them.</p>
+        <p class="lead"><b>15 years old, based in Horley, England.</b> Currently battling GCSEs while trying to build some <b>useful</b> skills.</p>
         <p>Every project teaches me something new. Still learning, always building.</p>
         <dl class="setup">
           <dt>setup</dt><dd>MacBook · Claude Code · vanilla JS · Supabase · GitHub</dd>
