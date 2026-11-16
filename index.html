@@ -83,7 +83,7 @@
   .hero h1 { margin: 0; }
   #name { width: min(100%, 980px); height: auto; display: block; overflow: visible; cursor: pointer; }
   #name .ink { fill: var(--ink); }
-  #name .xink { fill: var(--accent); }
+  #name .xink { fill: var(--ink); }
   #name .gl { transform-box: fill-box; transform-origin: 50% 100%; }
   .nib { fill: var(--accent); opacity: 0; transition: opacity .3s; } .nib.on { opacity: 1; }
   .sub { margin: 30px 0 0; max-width: 720px; font: italic 400 clamp(18px, 2.2vw, 22px)/1.5 var(--serif); }
@@ -301,7 +301,7 @@
   const svg = document.getElementById('name');
   const paths = [...svg.querySelectorAll('mask path')];   // writing strokes, then the two crosses
   const nib = document.getElementById('nib');
-  const WRITE_SPEED = 520, CROSS_SPEED = 640, LIFT = 110, WORD_GAP = 420, BEFORE_CROSSES = 700, CROSS_GAP = 260;
+  const WRITE_SPEED = 800, CROSS_SPEED = 900, LIFT = 60, WORD_GAP = 260, BEFORE_CROSSES = 450, CROSS_GAP = 170;
   const gapBefore = (i) => {
     if (i === 0) return 450;
     if (paths[i].classList.contains('x')) return paths[i - 1].classList.contains('x') ? CROSS_GAP : BEFORE_CROSSES;
